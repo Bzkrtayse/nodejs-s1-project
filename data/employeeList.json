@@ -1,0 +1,178 @@
+[
+  {
+    "ad": "Gamze",
+    "soyad": "Bilgin",
+    "email": "gamze.bilgin@aitechcorp.com",
+    "pozisyon": "Makine Öğrenimi Uzmanı",
+    "ise_giris_tarihi": "2025-01-10",
+    "maas": 120608
+  },
+  {
+    "ad": "Serkan",
+    "soyad": "İhsanoğlu",
+    "email": "serkan.ihsanoğlu@aitechcorp.com",
+    "pozisyon": "Yapay Zeka Mühendisi",
+    "ise_giris_tarihi": "2024-11-01",
+    "maas": 145853
+  },
+  {
+    "ad": "Mehmet",
+    "soyad": "Durdu",
+    "email": "mehmet.durdu@aitechcorp.com",
+    "pozisyon": "Frontend Geliştirici",
+    "ise_giris_tarihi": "2024-10-25",
+    "maas": 81950
+  },
+  {
+    "ad": "Tuğçe",
+    "soyad": "Akça",
+    "email": "tuğçe.akça@aitechcorp.com",
+    "pozisyon": "Doğal Dil İşleme Uzmanı",
+    "ise_giris_tarihi": "2024-09-12",
+    "maas": 140497
+  },
+  {
+    "ad": "Onur",
+    "soyad": "Akçay",
+    "email": "onur.akçay@aitechcorp.com",
+    "pozisyon": "Bilgisayarla Görü Uzmanı",
+    "ise_giris_tarihi": "2021-01-28",
+    "maas": 122389
+  },
+  {
+    "ad": "Ahmet",
+    "soyad": "Aydın",
+    "email": "ahmet.aydin@aitechcorp.com",
+    "pozisyon": "Yazılım Geliştirici",
+    "ise_giris_tarihi": "2023-04-15",
+    "maas": 95000
+  },
+  {
+    "ad": "Büşra",
+    "soyad": "Güler",
+    "email": "büşra.güler@aitechcorp.com",
+    "pozisyon": "Veri Mühendisi",
+    "ise_giris_tarihi": "2022-06-23",
+    "maas": 115000
+  },
+  {
+    "ad": "Baran",
+    "soyad": "Yılmaz",
+    "email": "baran.yılmaz@aitechcorp.com",
+    "pozisyon": "Veri Bilimci",
+    "ise_giris_tarihi": "2024-08-12",
+    "maas": 137000
+  },
+  {
+    "ad": "Derya",
+    "soyad": "Yıldırım",
+    "email": "derya.yıldırım@aitechcorp.com",
+    "pozisyon": "AI Ürün Yöneticisi",
+    "ise_giris_tarihi": "2020-03-05",
+    "maas": 145000
+  },
+  {
+    "ad": "Emre",
+    "soyad": "Kara",
+    "email": "emre.kara@aitechcorp.com",
+    "pozisyon": "MLOps Mühendisi",
+    "ise_giris_tarihi": "2022-10-01",
+    "maas": 130000
+  },
+  {
+    "ad": "Furkan",
+    "soyad": "Çelik",
+    "email": "furkan.çelik@aitechcorp.com",
+    "pozisyon": "Backend Geliştirici",
+    "ise_giris_tarihi": "2024-01-15",
+    "maas": 120000
+  },
+  {
+    "ad": "Gizem",
+    "soyad": "Doğan",
+    "email": "gizem.dogan@aitechcorp.com",
+    "pozisyon": "Araştırma Mühendisi",
+    "ise_giris_tarihi": "2021-07-20",
+    "maas": 127000
+  },
+  {
+    "ad": "Burak",
+    "soyad": "Öztürk",
+    "email": "burak.öztürk@aitechcorp.com",
+    "pozisyon": "Yazılım Mimarı",
+    "ise_giris_tarihi": "2019-02-17",
+    "maas": 175000
+  },
+  {
+    "ad": "Eda",
+    "soyad": "Aksu",
+    "email": "eda.aksu@aitechcorp.com",
+    "pozisyon": "Bilgisayarla Görü Uzmanı",
+    "ise_giris_tarihi": "2023-08-23",
+    "maas": 110000
+  },
+  {
+    "ad": "Tugay",
+    "soyad": "Küçük",
+    "email": "tugay.küçük@aitechcorp.com",
+    "pozisyon": "Yapay Zeka Araştırmacısı",
+    "ise_giris_tarihi": "2022-05-14",
+    "maas": 145000
+  },
+  {
+    "ad": "Zeynep",
+    "soyad": "Şimşek",
+    "email": "zeynep.şimşek@aitechcorp.com",
+    "pozisyon": "Doğal Dil İşleme Uzmanı",
+    "ise_giris_tarihi": "2024-11-01",
+    "maas": 136000
+  },
+  {
+    "ad": "Emine",
+    "soyad": "Başar",
+    "email": "emine.başar@aitechcorp.com",
+    "pozisyon": "Veri Bilimci",
+    "ise_giris_tarihi": "2020-08-30",
+    "maas": 125000
+  },
+  {
+    "ad": "Yusuf",
+    "soyad": "Köksal",
+    "email": "yusuf.köksal@aitechcorp.com",
+    "pozisyon": "Yazılım Geliştirici",
+    "ise_giris_tarihi": "2023-03-21",
+    "maas": 105000
+  },
+  {
+    "ad": "Seda",
+    "soyad": "Güzel",
+    "email": "seda.güzel@aitechcorp.com",
+    "pozisyon": "Test Mühendisi",
+    "ise_giris_tarihi": "2021-12-18",
+    "maas": 95000
+  },
+  {
+    "ad": "Murat",
+    "soyad": "Yılmaz",
+    "email": "murat.yılmaz@aitechcorp.com",
+    "pozisyon": "AI Danışmanı",
+    "ise_giris_tarihi": "2022-01-01",
+    "maas": 155000
+  },
+  {
+    "ad": "Çağıl",
+    "soyad": "Taşkın",
+    "email": "çağıl.taşkın@aitechcorp.com",
+    "pozisyon": "MLOps Mühendisi",
+    "ise_giris_tarihi": "2023-07-10",
+    "maas": 130000
+  },
+  {
+    "ad": "Feyza",
+    "soyad": "Şahin",
+    "email": "feyza.şahin@aitechcorp.com",
+    "pozisyon": "Backend Geliştirici",
+    "ise_giris_tarihi": "2021-05-15",
+    "maas": 115000
+  }
+]
