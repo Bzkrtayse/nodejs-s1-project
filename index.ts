@@ -1,10 +1,41 @@
 import http, { IncomingMessage, ServerResponse } from "http";
+import path from "path";
+import { promises as fs, read } from "fs";
+const PORT = 3000;
+const HOSTNAME = "localhost";
+
+const directoryPath = path.join(__dirname, 'src', 'pages');
+
+async function readHTMLfile(res: ServerResponse, fileName: string) {
+  const filePath = path.join(directoryPath, fileName);
+  try {
+    const data = await fs.readFile(filePath);
+    res.writeHead(200, { "content-type": "text/html" });
+    res.end(data);
+  }
+  catch (error) {
+    res.writeHead(500,{'content-type':'text/plain'});
+    res.end("500 Internal Server Error");
+  }
+}
 
 const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello from TypeScript server");
+ 
+  if (req.url === "/" || req.url === "/home") {
+    readHTMLfile(res, 'index.html');
+  }
+  else if (req.url === "/products") {
+    readHTMLfile(res, 'products.html');
+  }
+  else if (req.url === "/connect") {
+    readHTMLfile(res, 'contact.html');
+  }
+  else {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    res.end("404 Not Found");
+  }
 });
 
-server.listen(3000, "localhost", () => {
-  console.log("Server is listening on port 3000...");
+server.listen(PORT, HOSTNAME, () => {
+  console.log(`Server is listening on http://${HOSTNAME}:${PORT}...`);
 });
