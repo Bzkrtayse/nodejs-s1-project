@@ -52,6 +52,11 @@ function oldestEmployee(employees: Employee[]) {
     return (current.ise_giris_tarihi < oldest.ise_giris_tarihi) ? current : oldest;
   });
 }
+function avarageSalary(employees: Employee[]) {
+  const totalSalary = employees.reduce((sum, index) => sum + index.maas, 0);
+  const avarage = totalSalary / employees.length;
+  return avarage.toFixed(2);
+}
 
 const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
 
@@ -82,6 +87,20 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
       res.end(JSON.stringify(oldest));
     } catch (error) {
       res.writeHead(500, { 'content-type': 'text/plain' });
+      res.end("500 Internal Server Error");
+    }
+    return;
+  }
+  if (req.url === '/avarageSalary') {
+    try {
+      const data = await readEmployeeData();
+      const avarage = avarageSalary(data);
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ avarageSalary: avarage }));
+      
+    }
+    catch (error) {
+      res.writeHead(500,{'content-type':'text/plain'});
       res.end("500 Internal Server Error");
     }
     return;
