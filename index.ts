@@ -9,6 +9,7 @@ type Employee = {
   soyad: string,
   email: string,
   pozisyon: string,
+  ise_giris_tarihi: string,
   maas: number,
 }
 const directoryPath = path.join(__dirname, 'src', 'pages');
@@ -46,6 +47,12 @@ async function readEmployeeData(): Promise<Employee[]> {
 function removeSalary(employees: Employee[]) {
   return employees.map(({maas, ...rest})=>rest)
 }
+function oldestEmployee(employees: Employee[]) {
+  return employees.reduce((oldest, current) => {
+    return (current.ise_giris_tarihi < oldest.ise_giris_tarihi) ? current : oldest;
+  });
+}
+
 const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
 
   const url = req.url || "/";
@@ -65,20 +72,39 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
       res.writeHead(500, { 'content-type': 'text/plain' });
       res.end("500 Internal Server Error");
     }
+    return;
   }
- 
+  if (req.url === '/oldestEmployee') {
+    try {
+      const data = await readEmployeeData();
+      const oldest = oldestEmployee(data);
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(oldest));
+    } catch (error) {
+      res.writeHead(500, { 'content-type': 'text/plain' });
+      res.end("500 Internal Server Error");
+    }
+    return;
+  }
+  
   //HTML ROUTES
-   if (req.url === "/" || req.url === "/home") {
+  if (req.url === "/" || req.url === "/home")
+  {
     readHTMLfile(res, 'index.html');
+    return;
   }
    if (req.url === "/products") {
-    readHTMLfile(res, 'products.html');
+     readHTMLfile(res, 'products.html');
+     return;
   }
-   if (req.url === "/connect") {
+  if (req.url === "/connect") {
     readHTMLfile(res, 'contact.html');
+    return;
   }
+ 
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("404 Not Found");
+  
   
 });
 
