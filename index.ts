@@ -4,9 +4,16 @@ import { promises as fs, read } from "fs";
 const PORT = 3000;
 const HOSTNAME = "localhost";
 
+type Employee = {
+  ad: string,
+  soyad: string,
+  email: string,
+  pozisyon: string,
+  maas: number,
+}
 const directoryPath = path.join(__dirname, 'src', 'pages');
 const stylesPath = path.join(__dirname, "src", "styles");
-
+const employeesDataPath = path.join(__dirname, 'data','employeeList.json');
 
 async function readHTMLfile(res: ServerResponse, fileName: string) {
   const filePath = path.join(directoryPath, fileName);
@@ -31,16 +38,32 @@ async function serveCSS(res: ServerResponse, fileUrl: string) {
     res.end("404 CSS File Not Found");
   }
 }
+async function readEmployeeData(): Promise<Employee[]> {
+    const data = await fs.readFile(employeesDataPath,'utf-8');
+    return JSON.parse(data);
+ }
 
-const server = http.createServer((req: IncomingMessage, res: ServerResponse) => {
-  
+const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
+
   const url = req.url || "/";
 
   if (url.startsWith("/styles/")) {
     serveCSS(res, url);
     return;
   }
+  //API ENDPOINTS
+  if (req.url === "/employeeList") {
+    try {
+      const data = await readEmployeeData();
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify(data));
+    } catch (error) {
+      res.writeHead(500, { 'content-type': 'text/plain' });
+      res.end("500 Internal Server Error");
+    }
+  }
  
+  //HTML ROUTES
   if (req.url === "/" || req.url === "/home") {
     readHTMLfile(res, 'index.html');
   }
