@@ -43,6 +43,9 @@ async function readEmployeeData(): Promise<Employee[]> {
     return JSON.parse(data);
  }
 
+function removeSalary(employees: Employee[]) {
+  return employees.map(({maas, ...rest})=>rest)
+}
 const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
 
   const url = req.url || "/";
@@ -55,8 +58,9 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
   if (req.url === "/employeeList") {
     try {
       const data = await readEmployeeData();
+      const noSalaryData=removeSalary(data);
       res.writeHead(200, { 'content-type': 'application/json' });
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(noSalaryData));
     } catch (error) {
       res.writeHead(500, { 'content-type': 'text/plain' });
       res.end("500 Internal Server Error");
@@ -64,19 +68,18 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
   }
  
   //HTML ROUTES
-  if (req.url === "/" || req.url === "/home") {
+   if (req.url === "/" || req.url === "/home") {
     readHTMLfile(res, 'index.html');
   }
-  else if (req.url === "/products") {
+   if (req.url === "/products") {
     readHTMLfile(res, 'products.html');
   }
-  else if (req.url === "/connect") {
+   if (req.url === "/connect") {
     readHTMLfile(res, 'contact.html');
   }
-  else {
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("404 Not Found");
-  }
+  
 });
 
 server.listen(PORT, HOSTNAME, () => {
