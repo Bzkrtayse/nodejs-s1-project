@@ -105,7 +105,6 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
     }
     return;
   }
-  
   //HTML ROUTES
   if (req.url === "/" || req.url === "/home")
   {
@@ -120,13 +119,10 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
     readHTMLfile(res, 'contact.html');
     return;
   }
- 
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("404 Not Found");
   
-  
 });
-
 server.listen(PORT, HOSTNAME, () => {
   console.log(`Server is listening on http://${HOSTNAME}:${PORT}...`);
 });
