@@ -105,6 +105,23 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
     }
     return;
   }
+  if (req.url === '/api/top100products') {
+
+ try {
+    const response = await fetch(
+      'https://e-commerce-m3d4.onrender.com/products?sort=rating:desc&limit=10&offset=10'
+    );
+    
+    const requestData = await response.json();
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(requestData));
+  } catch (error: any) {
+    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.end(`500 Internal Server Error: ${error.message}`);
+  }
+  return;
+  }
   //HTML ROUTES
   if (req.url === "/" || req.url === "/home")
   {
