@@ -1,6 +1,11 @@
 import http, { IncomingMessage, ServerResponse } from "http";
 import path from "path";
 import { promises as fs, read } from "fs";
+import geoip from 'geoip-lite';
+import dotenv from 'dotenv'
+
+dotenv.config();
+
 const PORT = 3000;
 const HOSTNAME = "localhost";
 
@@ -56,6 +61,22 @@ function avarageSalary(employees: Employee[]) {
   const totalSalary = employees.reduce((sum, index) => sum + index.maas, 0);
   const avarage = totalSalary / employees.length;
   return avarage.toFixed(2);
+}
+async function getWeather(lat:number, lon:number) {
+  const apiKey = process.env.OPENWEATHER_API_KEY;
+  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+  if (!response.ok) {
+    throw new Error(`Weather API error: ${response.statusText}`);
+  }
+  const data= await response.json();
+  return {
+    success: true,
+    data: {
+      city: data.name,
+      temperature: data.main.temp,
+      condition: data.weather[0].description
+    }
+  }
 }
 
 const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
@@ -127,6 +148,32 @@ const server = http.createServer(async (req: IncomingMessage, res: ServerRespons
     catch (error) {
       res.writeHead(500, { 'content-type': 'text/plain' });
       res.end("500 Internal Server Error");
+    }
+    return;
+  }
+  if (req.url === '/api/how-is-your-weather') {
+    try {
+      const ip = (req.headers['x-forwarded-for'] as string)
+        || req.socket.remoteAddress
+        || '';
+      console.log(`IP Address: ${ip}`);
+
+      const geo = geoip.lookup(ip);
+      if (!geo) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: false, message: "Could not determine location" }));
+        return;
+      }
+      const [lat, lon] = geo.ll;
+
+      const weatherData = await getWeather(lat, lon);
+
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify(weatherData));
+    }
+    catch (error: any) {
+      res.writeHead(500, { 'content-type': 'text/plain' });
+      res.end(JSON.stringify({ success: false, error: error.message }));
     }
     return;
   }
